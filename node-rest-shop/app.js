@@ -9,12 +9,13 @@ const orderRoutes = require('./api/routes/orders');
 
 mongoose.connect("mongodb+srv://Krishna:"
     + process.env.MONGO_ATLAS_PW
-    +"@node-rest-shop.buuvm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",{
+    +"@node-rest-shop.buuvm.mongodb.net/node-rest-shop?retryWrites=true&w=majority",{
     
 }).then(res => {
     app.listen(300)
 })
 
+console.log(process.env.Krishnamongodb)
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -28,10 +29,12 @@ app.use((res,req,next)=>{
     res.header("Acess-Control-Allow-Headers",
         "Origin,X-Requested-With,Content-Type,Accept,Authorization"
     );
+    console.log("header")
     if (req.method === 'OPTIONS'){
         res.header('Acess-Control-Allow-Methods','PUT,POST,PATCH,DELETE,GET');
         return res.status(200).json({});
     }
+    console.log("requestadfadfasdfasdf")
 })
 
 //sending the request to product js 
